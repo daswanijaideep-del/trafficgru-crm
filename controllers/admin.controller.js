@@ -15,33 +15,34 @@ const getAllLeads = async (req, res) => {
         const sort = req.query.sort || "latest";
 
         const query = {
-            $or: [
-                { isArchived: false },
-                { isArchived: { $exists: false } }
-            ]
-        };
 
-        if (search) {
+    isArchived: false
 
-            query.$or = [
+};
 
-                { name: { $regex: search, $options: "i" } },
+if (search) {
 
-                { email: { $regex: search, $options: "i" } },
+    query.$or = [
 
-                { company: { $regex: search, $options: "i" } },
+        { leadNumber: { $regex: search, $options: "i" } },
 
-                { phone: { $regex: search, $options: "i" } }
+        { name: { $regex: search, $options: "i" } },
 
-            ];
+        { company: { $regex: search, $options: "i" } },
 
-        }
+        { email: { $regex: search, $options: "i" } },
 
-        if (status) {
+        { phone: { $regex: search, $options: "i" } }
 
-            query.status = status;
+    ];
 
-        }
+}
+
+if (status) {
+
+    query.status = status;
+
+}
 
         const totalRecords = await Lead.countDocuments(query);
 
@@ -59,10 +60,11 @@ const getAllLeads = async (req, res) => {
 
             .limit(limit);
 
-        res.json({
+        return res.status(200).json({
+
 
             success: true,
-            message: "Leads fetched successfully",
+             message: "Leads fetched successfully",
 
             data: {
 
@@ -120,7 +122,7 @@ const getLeadById = async (req, res) => {
 
         }
 
-        res.json({
+        return res.status(200).json({
 
             success: true,
 
@@ -175,7 +177,7 @@ const updateLead = async (req, res) => {
 
         }
 
-        res.json({
+        return res.status(200).json({
 
             success: true,
 
@@ -232,7 +234,7 @@ const archiveLead = async (req, res) => {
 
         }
 
-        res.json({
+        return res.status(200).json({
 
             success: true,
 
