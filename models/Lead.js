@@ -112,7 +112,15 @@ const leadSchema = new mongoose.Schema(
                 "High"
             ],
             default: "Normal"
-        }
+        },
+        notes: {
+    type: String,
+    default: ""
+},
+isArchived: {
+    type: Boolean,
+    default: false
+}
 
     },
     {
