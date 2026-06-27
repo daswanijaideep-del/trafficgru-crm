@@ -62,6 +62,7 @@ const getAllLeads = async (req, res) => {
         res.json({
 
             success: true,
+            message: "Leads fetched successfully",
 
             data: {
 
