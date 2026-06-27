@@ -6,13 +6,27 @@ const getDashboard = async (req, res) => {
 
         const data = await dashboardService.getDashboardData();
 
-        res.json({
+        return res.status(200).json({
 
-            success: true,
+    success: true,
 
-            data
+    message: "Dashboard data fetched successfully",
 
-        });
+    data: {
+
+        totalLeads,
+
+        todayLeads,
+
+        newLeads,
+
+        proposalSent,
+
+        recentLeads
+
+    }
+
+});
 
     }
 
