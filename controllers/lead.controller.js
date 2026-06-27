@@ -3,6 +3,9 @@ const Lead = require("../models/Lead");
 const createLead = async (req, res) => {
 
     try {
+        console.log("========== REQUEST ==========");
+
+        console.log(JSON.stringify(req.body, null, 2));
 
         const {
             form_id,
@@ -80,18 +83,15 @@ const createLead = async (req, res) => {
     }
 
     catch (error) {
+    console.error("===== LEAD CREATION ERROR =====");
+    console.error(error);
 
-        console.log(error);
-
-        res.status(500).json({
-
-            success: false,
-
-            message: "Server Error"
-
-        });
-
-    }
+    return res.status(500).json({
+        success: false,
+        message: error.message,
+        stack: process.env.NODE_ENV === "development" ? error.stack : undefined
+    });
+}
 
 };
 
