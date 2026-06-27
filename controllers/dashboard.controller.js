@@ -8,33 +8,19 @@ const getDashboard = async (req, res) => {
 
         return res.status(200).json({
 
-    success: true,
+            success: true,
 
-    message: "Dashboard data fetched successfully",
+            message: "Dashboard data fetched successfully",
 
-    data: {
+            data
 
-        totalLeads,
+        });
 
-        todayLeads,
+    } catch (error) {
 
-        newLeads,
+        console.error(error);
 
-        proposalSent,
-
-        recentLeads
-
-    }
-
-});
-
-    }
-
-    catch (error) {
-
-        console.log(error);
-
-        res.status(500).json({
+        return res.status(500).json({
 
             success: false,
 
